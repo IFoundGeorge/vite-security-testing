@@ -1,7 +1,5 @@
-import { StaticImageData } from "next/image";
-
 export interface SeniorInfoProps {
-  image: string | StaticImageData;
+  image: string;
   name: string;
   position: string;
   description: string;

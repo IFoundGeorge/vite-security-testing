@@ -1,7 +1,13 @@
+import { createFileRoute } from '@tanstack/react-router';
 import SeniorInfo from '@src/components/SeniorInfo/SeniorInfo';
 import AnyaImage from '@src/assets/images/anya.jpg';
 import AllaImage from '@src/assets/images/alla.jpg';
 import DioImage from '@src/assets/images/dio.jpg';
+
+export const Route = createFileRoute('/playground/components/SeniorInfo/')({
+  component: SeniorInfoPlayground,
+});
+
 export default function SeniorInfoPlayground() {
   return (
     <div className="w-full space-y-16">

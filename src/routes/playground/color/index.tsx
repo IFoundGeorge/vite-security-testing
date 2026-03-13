@@ -1,3 +1,10 @@
+import { createFileRoute } from "@tanstack/react-router";
+
+export const Route = createFileRoute('/playground/color/')({
+  component: Color,
+});
+
+
 function Swatch({ color, textLight }: { color: string, textLight: boolean }) {
   return (
     <div className={`min-w-5 min-h-40 pl-1 pb-1 pr-5 flex flex-col justify-end align-end bg-${color} rounded-xl`}>
@@ -19,7 +26,6 @@ function GradientSwatches({ prefix }: { prefix: string }) {
 }
 
 export default function Color() {
-  
   return (
     <div className="flex flex-col gap-5">
       <GradientSwatches prefix="primary" />

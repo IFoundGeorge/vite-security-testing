@@ -1,5 +1,4 @@
-import Image from "next/image";
-import { SeniorInfoProps } from "./SeniorInfoTypes";
+import type { SeniorInfoProps } from "./SeniorInfoTypes";
 
 export default function SeniorInfo({
   name,
@@ -17,10 +16,9 @@ export default function SeniorInfo({
       <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8 px-4 sm:px-6 lg:px-10">
         <div className={`flex flex-col md:flex-row items-center md:items-start gap-8 w-full ${imagePosition === "right" ? "md:flex-row-reverse" : ""}`}>
           <div className="w-40 h-40 relative rounded-full overflow-hidden shrink-0">
-            <Image
+            <img
               src={image}
               alt={name}
-              fill
               className="object-cover"
             />
           </div>
