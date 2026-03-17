@@ -3,7 +3,7 @@ import { DynamicIcon } from 'lucide-react/dynamic';
 
 export default function PillarCard({ icon, title, bulletPoints }: PillarCardProps) {
   return (
-    <div className="flex w-full h-fit max-w-69 min-h-80 p-5 gap-5 flex-col items-center shadow-xl rounded-2xl lg:max-w-none lg:min-w-none lg:h-full">
+    <div className="flex w-full h-fit max-w-69 min-h-80 p-5 gap-5 flex-col items-center shadow-xl rounded-2xl bg-gray lg:max-w-none lg:min-w-none lg:h-full">
       <div className="flex p-6 w-21 h-21 justify-center items-center rounded-full shadow-md bg-gray-300 text-primary">
         <DynamicIcon name={icon} className="w-full h-full" />
       </div>
