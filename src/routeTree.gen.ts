@@ -14,6 +14,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as PlaygroundTypographyIndexRouteImport } from './routes/playground/typography/index'
 import { Route as PlaygroundColorIndexRouteImport } from './routes/playground/color/index'
 import { Route as PlaygroundComponentsSeniorInfoIndexRouteImport } from './routes/playground/components/SeniorInfo/index'
+import { Route as PlaygroundComponentsCultureCardIndexRouteImport } from './routes/playground/components/CultureCard/index'
 
 const PlaygroundRouteRoute = PlaygroundRouteRouteImport.update({
   id: '/playground',
@@ -42,12 +43,19 @@ const PlaygroundComponentsSeniorInfoIndexRoute =
     path: '/components/SeniorInfo/',
     getParentRoute: () => PlaygroundRouteRoute,
   } as any)
+const PlaygroundComponentsCultureCardIndexRoute =
+  PlaygroundComponentsCultureCardIndexRouteImport.update({
+    id: '/components/CultureCard/',
+    path: '/components/CultureCard/',
+    getParentRoute: () => PlaygroundRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/playground': typeof PlaygroundRouteRouteWithChildren
   '/playground/color/': typeof PlaygroundColorIndexRoute
   '/playground/typography/': typeof PlaygroundTypographyIndexRoute
+  '/playground/components/CultureCard/': typeof PlaygroundComponentsCultureCardIndexRoute
   '/playground/components/SeniorInfo/': typeof PlaygroundComponentsSeniorInfoIndexRoute
 }
 export interface FileRoutesByTo {
@@ -55,6 +63,7 @@ export interface FileRoutesByTo {
   '/playground': typeof PlaygroundRouteRouteWithChildren
   '/playground/color': typeof PlaygroundColorIndexRoute
   '/playground/typography': typeof PlaygroundTypographyIndexRoute
+  '/playground/components/CultureCard': typeof PlaygroundComponentsCultureCardIndexRoute
   '/playground/components/SeniorInfo': typeof PlaygroundComponentsSeniorInfoIndexRoute
 }
 export interface FileRoutesById {
@@ -63,6 +72,7 @@ export interface FileRoutesById {
   '/playground': typeof PlaygroundRouteRouteWithChildren
   '/playground/color/': typeof PlaygroundColorIndexRoute
   '/playground/typography/': typeof PlaygroundTypographyIndexRoute
+  '/playground/components/CultureCard/': typeof PlaygroundComponentsCultureCardIndexRoute
   '/playground/components/SeniorInfo/': typeof PlaygroundComponentsSeniorInfoIndexRoute
 }
 export interface FileRouteTypes {
@@ -72,6 +82,7 @@ export interface FileRouteTypes {
     | '/playground'
     | '/playground/color/'
     | '/playground/typography/'
+    | '/playground/components/CultureCard/'
     | '/playground/components/SeniorInfo/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -79,6 +90,7 @@ export interface FileRouteTypes {
     | '/playground'
     | '/playground/color'
     | '/playground/typography'
+    | '/playground/components/CultureCard'
     | '/playground/components/SeniorInfo'
   id:
     | '__root__'
@@ -86,6 +98,7 @@ export interface FileRouteTypes {
     | '/playground'
     | '/playground/color/'
     | '/playground/typography/'
+    | '/playground/components/CultureCard/'
     | '/playground/components/SeniorInfo/'
   fileRoutesById: FileRoutesById
 }
@@ -131,18 +144,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlaygroundComponentsSeniorInfoIndexRouteImport
       parentRoute: typeof PlaygroundRouteRoute
     }
+    '/playground/components/CultureCard/': {
+      id: '/playground/components/CultureCard/'
+      path: '/components/CultureCard'
+      fullPath: '/playground/components/CultureCard/'
+      preLoaderRoute: typeof PlaygroundComponentsCultureCardIndexRouteImport
+      parentRoute: typeof PlaygroundRouteRoute
+    }
   }
 }
 
 interface PlaygroundRouteRouteChildren {
   PlaygroundColorIndexRoute: typeof PlaygroundColorIndexRoute
   PlaygroundTypographyIndexRoute: typeof PlaygroundTypographyIndexRoute
+  PlaygroundComponentsCultureCardIndexRoute: typeof PlaygroundComponentsCultureCardIndexRoute
   PlaygroundComponentsSeniorInfoIndexRoute: typeof PlaygroundComponentsSeniorInfoIndexRoute
 }
 
 const PlaygroundRouteRouteChildren: PlaygroundRouteRouteChildren = {
   PlaygroundColorIndexRoute: PlaygroundColorIndexRoute,
   PlaygroundTypographyIndexRoute: PlaygroundTypographyIndexRoute,
+  PlaygroundComponentsCultureCardIndexRoute:
+    PlaygroundComponentsCultureCardIndexRoute,
   PlaygroundComponentsSeniorInfoIndexRoute:
     PlaygroundComponentsSeniorInfoIndexRoute,
 }
