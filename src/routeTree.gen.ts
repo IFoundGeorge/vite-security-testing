@@ -16,6 +16,7 @@ import { Route as PlaygroundColorIndexRouteImport } from './routes/playground/co
 import { Route as PlaygroundComponentsSeniorInfoIndexRouteImport } from './routes/playground/components/SeniorInfo/index'
 import { Route as PlaygroundComponentsPillarCardIndexRouteImport } from './routes/playground/components/PillarCard/index'
 import { Route as PlaygroundComponentsCultureCardIndexRouteImport } from './routes/playground/components/CultureCard/index'
+import { Route as PlaygroundComponentsAwardInfoIndexRouteImport } from './routes/playground/components/AwardInfo/index'
 
 const PlaygroundRouteRoute = PlaygroundRouteRouteImport.update({
   id: '/playground',
@@ -56,12 +57,19 @@ const PlaygroundComponentsCultureCardIndexRoute =
     path: '/components/CultureCard/',
     getParentRoute: () => PlaygroundRouteRoute,
   } as any)
+const PlaygroundComponentsAwardInfoIndexRoute =
+  PlaygroundComponentsAwardInfoIndexRouteImport.update({
+    id: '/components/AwardInfo/',
+    path: '/components/AwardInfo/',
+    getParentRoute: () => PlaygroundRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/playground': typeof PlaygroundRouteRouteWithChildren
   '/playground/color/': typeof PlaygroundColorIndexRoute
   '/playground/typography/': typeof PlaygroundTypographyIndexRoute
+  '/playground/components/AwardInfo/': typeof PlaygroundComponentsAwardInfoIndexRoute
   '/playground/components/CultureCard/': typeof PlaygroundComponentsCultureCardIndexRoute
   '/playground/components/PillarCard/': typeof PlaygroundComponentsPillarCardIndexRoute
   '/playground/components/SeniorInfo/': typeof PlaygroundComponentsSeniorInfoIndexRoute
@@ -71,6 +79,7 @@ export interface FileRoutesByTo {
   '/playground': typeof PlaygroundRouteRouteWithChildren
   '/playground/color': typeof PlaygroundColorIndexRoute
   '/playground/typography': typeof PlaygroundTypographyIndexRoute
+  '/playground/components/AwardInfo': typeof PlaygroundComponentsAwardInfoIndexRoute
   '/playground/components/CultureCard': typeof PlaygroundComponentsCultureCardIndexRoute
   '/playground/components/PillarCard': typeof PlaygroundComponentsPillarCardIndexRoute
   '/playground/components/SeniorInfo': typeof PlaygroundComponentsSeniorInfoIndexRoute
@@ -81,6 +90,7 @@ export interface FileRoutesById {
   '/playground': typeof PlaygroundRouteRouteWithChildren
   '/playground/color/': typeof PlaygroundColorIndexRoute
   '/playground/typography/': typeof PlaygroundTypographyIndexRoute
+  '/playground/components/AwardInfo/': typeof PlaygroundComponentsAwardInfoIndexRoute
   '/playground/components/CultureCard/': typeof PlaygroundComponentsCultureCardIndexRoute
   '/playground/components/PillarCard/': typeof PlaygroundComponentsPillarCardIndexRoute
   '/playground/components/SeniorInfo/': typeof PlaygroundComponentsSeniorInfoIndexRoute
@@ -92,6 +102,7 @@ export interface FileRouteTypes {
     | '/playground'
     | '/playground/color/'
     | '/playground/typography/'
+    | '/playground/components/AwardInfo/'
     | '/playground/components/CultureCard/'
     | '/playground/components/PillarCard/'
     | '/playground/components/SeniorInfo/'
@@ -101,6 +112,7 @@ export interface FileRouteTypes {
     | '/playground'
     | '/playground/color'
     | '/playground/typography'
+    | '/playground/components/AwardInfo'
     | '/playground/components/CultureCard'
     | '/playground/components/PillarCard'
     | '/playground/components/SeniorInfo'
@@ -110,6 +122,7 @@ export interface FileRouteTypes {
     | '/playground'
     | '/playground/color/'
     | '/playground/typography/'
+    | '/playground/components/AwardInfo/'
     | '/playground/components/CultureCard/'
     | '/playground/components/PillarCard/'
     | '/playground/components/SeniorInfo/'
@@ -171,12 +184,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlaygroundComponentsCultureCardIndexRouteImport
       parentRoute: typeof PlaygroundRouteRoute
     }
+    '/playground/components/AwardInfo/': {
+      id: '/playground/components/AwardInfo/'
+      path: '/components/AwardInfo'
+      fullPath: '/playground/components/AwardInfo/'
+      preLoaderRoute: typeof PlaygroundComponentsAwardInfoIndexRouteImport
+      parentRoute: typeof PlaygroundRouteRoute
+    }
   }
 }
 
 interface PlaygroundRouteRouteChildren {
   PlaygroundColorIndexRoute: typeof PlaygroundColorIndexRoute
   PlaygroundTypographyIndexRoute: typeof PlaygroundTypographyIndexRoute
+  PlaygroundComponentsAwardInfoIndexRoute: typeof PlaygroundComponentsAwardInfoIndexRoute
   PlaygroundComponentsCultureCardIndexRoute: typeof PlaygroundComponentsCultureCardIndexRoute
   PlaygroundComponentsPillarCardIndexRoute: typeof PlaygroundComponentsPillarCardIndexRoute
   PlaygroundComponentsSeniorInfoIndexRoute: typeof PlaygroundComponentsSeniorInfoIndexRoute
@@ -185,6 +206,8 @@ interface PlaygroundRouteRouteChildren {
 const PlaygroundRouteRouteChildren: PlaygroundRouteRouteChildren = {
   PlaygroundColorIndexRoute: PlaygroundColorIndexRoute,
   PlaygroundTypographyIndexRoute: PlaygroundTypographyIndexRoute,
+  PlaygroundComponentsAwardInfoIndexRoute:
+    PlaygroundComponentsAwardInfoIndexRoute,
   PlaygroundComponentsCultureCardIndexRoute:
     PlaygroundComponentsCultureCardIndexRoute,
   PlaygroundComponentsPillarCardIndexRoute:

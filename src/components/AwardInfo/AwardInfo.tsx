@@ -1,5 +1,4 @@
-import Image from "next/image";
-import { AwardInfoProps } from "./AwardInfoTypes";
+import type { AwardInfoProps } from "./AwardInfoTypes";
 
 export default function AwardInfo({ image, direction, name, description }: AwardInfoProps) {
   return (
@@ -7,7 +6,7 @@ export default function AwardInfo({ image, direction, name, description }: Award
       <div className={`flex w-full max-w-250 p-8 gap-8 flex-col justify-center items-center ${direction === "left" ? "sm:flex-row" : "sm:flex-row-reverse"}`}>
         {image !== undefined &&
           <div className="flex max-w-40 max-h-40 justify-center items-center overflow-hidden">
-            <Image
+            <img
               src={image}
               alt="Image"
               className="object-cover"
