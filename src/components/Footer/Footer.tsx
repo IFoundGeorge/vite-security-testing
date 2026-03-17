@@ -29,8 +29,8 @@ function TextLink({ display, link }: { display: string; link: string }) {
 
 export default function Footer() {
   return (
-    <div className="flex w-full flex-col bg-gray">
-      <div className="flex w-full p-10 gap-3 flex-col justify-center items-center">
+    <div className="flex w-full gap-4 flex-col bg-gray">
+      <div className="flex w-full p-5 pb-0 gap-3 flex-col justify-center items-center">
         <img src={AretexLogo} className="max-h-10"/>
 
         <div className="flex w-full gap-3 flex-row justify-center">
@@ -40,9 +40,11 @@ export default function Footer() {
           <LogoLink logo={<img src="https://s.magecdn.com/social/mb-linkedin.svg" />} link="/" />
         </div>
 
-        <TextLink display="Metro Manila, Philippines" link="/" />
-        <TextLink display="careers@aretex.com.au" link="mailto:careers@aretex.com.au" />
-        <TextLink display="+63 9063735789" link="tel:+639063735789" />
+        <div className="flex w-full gap-1 flex-col">
+          <TextLink display="Metro Manila, Philippines" link="/" />
+          <TextLink display="careers@aretex.com.au" link="mailto:careers@aretex.com.au" />
+          <TextLink display="+63 9063735789" link="tel:+639063735789" />
+        </div>
       </div>
 
       <div className="flex w-full px-10 py-5 gap-5 flex-col justify-center items-center sm:px-20 md:px-30">
