@@ -16,6 +16,7 @@ import { Route as PlaygroundColorIndexRouteImport } from './routes/playground/co
 import { Route as PlaygroundComponentsSeniorInfoIndexRouteImport } from './routes/playground/components/SeniorInfo/index'
 import { Route as PlaygroundComponentsPillarCardIndexRouteImport } from './routes/playground/components/PillarCard/index'
 import { Route as PlaygroundComponentsPageSectionIndexRouteImport } from './routes/playground/components/PageSection/index'
+import { Route as PlaygroundComponentsJobsCarouselItemSkillSetIndexRouteImport } from './routes/playground/components/JobsCarouselItemSkillSet/index'
 import { Route as PlaygroundComponentsInternshipPartIndexRouteImport } from './routes/playground/components/InternshipPart/index'
 import { Route as PlaygroundComponentsFooterIndexRouteImport } from './routes/playground/components/Footer/index'
 import { Route as PlaygroundComponentsCultureCardIndexRouteImport } from './routes/playground/components/CultureCard/index'
@@ -60,6 +61,12 @@ const PlaygroundComponentsPageSectionIndexRoute =
     path: '/components/PageSection/',
     getParentRoute: () => PlaygroundRouteRoute,
   } as any)
+const PlaygroundComponentsJobsCarouselItemSkillSetIndexRoute =
+  PlaygroundComponentsJobsCarouselItemSkillSetIndexRouteImport.update({
+    id: '/components/JobsCarouselItemSkillSet/',
+    path: '/components/JobsCarouselItemSkillSet/',
+    getParentRoute: () => PlaygroundRouteRoute,
+  } as any)
 const PlaygroundComponentsInternshipPartIndexRoute =
   PlaygroundComponentsInternshipPartIndexRouteImport.update({
     id: '/components/InternshipPart/',
@@ -94,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/playground/components/CultureCard/': typeof PlaygroundComponentsCultureCardIndexRoute
   '/playground/components/Footer/': typeof PlaygroundComponentsFooterIndexRoute
   '/playground/components/InternshipPart/': typeof PlaygroundComponentsInternshipPartIndexRoute
+  '/playground/components/JobsCarouselItemSkillSet/': typeof PlaygroundComponentsJobsCarouselItemSkillSetIndexRoute
   '/playground/components/PageSection/': typeof PlaygroundComponentsPageSectionIndexRoute
   '/playground/components/PillarCard/': typeof PlaygroundComponentsPillarCardIndexRoute
   '/playground/components/SeniorInfo/': typeof PlaygroundComponentsSeniorInfoIndexRoute
@@ -107,6 +115,7 @@ export interface FileRoutesByTo {
   '/playground/components/CultureCard': typeof PlaygroundComponentsCultureCardIndexRoute
   '/playground/components/Footer': typeof PlaygroundComponentsFooterIndexRoute
   '/playground/components/InternshipPart': typeof PlaygroundComponentsInternshipPartIndexRoute
+  '/playground/components/JobsCarouselItemSkillSet': typeof PlaygroundComponentsJobsCarouselItemSkillSetIndexRoute
   '/playground/components/PageSection': typeof PlaygroundComponentsPageSectionIndexRoute
   '/playground/components/PillarCard': typeof PlaygroundComponentsPillarCardIndexRoute
   '/playground/components/SeniorInfo': typeof PlaygroundComponentsSeniorInfoIndexRoute
@@ -121,6 +130,7 @@ export interface FileRoutesById {
   '/playground/components/CultureCard/': typeof PlaygroundComponentsCultureCardIndexRoute
   '/playground/components/Footer/': typeof PlaygroundComponentsFooterIndexRoute
   '/playground/components/InternshipPart/': typeof PlaygroundComponentsInternshipPartIndexRoute
+  '/playground/components/JobsCarouselItemSkillSet/': typeof PlaygroundComponentsJobsCarouselItemSkillSetIndexRoute
   '/playground/components/PageSection/': typeof PlaygroundComponentsPageSectionIndexRoute
   '/playground/components/PillarCard/': typeof PlaygroundComponentsPillarCardIndexRoute
   '/playground/components/SeniorInfo/': typeof PlaygroundComponentsSeniorInfoIndexRoute
@@ -136,6 +146,7 @@ export interface FileRouteTypes {
     | '/playground/components/CultureCard/'
     | '/playground/components/Footer/'
     | '/playground/components/InternshipPart/'
+    | '/playground/components/JobsCarouselItemSkillSet/'
     | '/playground/components/PageSection/'
     | '/playground/components/PillarCard/'
     | '/playground/components/SeniorInfo/'
@@ -149,6 +160,7 @@ export interface FileRouteTypes {
     | '/playground/components/CultureCard'
     | '/playground/components/Footer'
     | '/playground/components/InternshipPart'
+    | '/playground/components/JobsCarouselItemSkillSet'
     | '/playground/components/PageSection'
     | '/playground/components/PillarCard'
     | '/playground/components/SeniorInfo'
@@ -162,6 +174,7 @@ export interface FileRouteTypes {
     | '/playground/components/CultureCard/'
     | '/playground/components/Footer/'
     | '/playground/components/InternshipPart/'
+    | '/playground/components/JobsCarouselItemSkillSet/'
     | '/playground/components/PageSection/'
     | '/playground/components/PillarCard/'
     | '/playground/components/SeniorInfo/'
@@ -223,6 +236,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlaygroundComponentsPageSectionIndexRouteImport
       parentRoute: typeof PlaygroundRouteRoute
     }
+    '/playground/components/JobsCarouselItemSkillSet/': {
+      id: '/playground/components/JobsCarouselItemSkillSet/'
+      path: '/components/JobsCarouselItemSkillSet'
+      fullPath: '/playground/components/JobsCarouselItemSkillSet/'
+      preLoaderRoute: typeof PlaygroundComponentsJobsCarouselItemSkillSetIndexRouteImport
+      parentRoute: typeof PlaygroundRouteRoute
+    }
     '/playground/components/InternshipPart/': {
       id: '/playground/components/InternshipPart/'
       path: '/components/InternshipPart'
@@ -261,6 +281,7 @@ interface PlaygroundRouteRouteChildren {
   PlaygroundComponentsCultureCardIndexRoute: typeof PlaygroundComponentsCultureCardIndexRoute
   PlaygroundComponentsFooterIndexRoute: typeof PlaygroundComponentsFooterIndexRoute
   PlaygroundComponentsInternshipPartIndexRoute: typeof PlaygroundComponentsInternshipPartIndexRoute
+  PlaygroundComponentsJobsCarouselItemSkillSetIndexRoute: typeof PlaygroundComponentsJobsCarouselItemSkillSetIndexRoute
   PlaygroundComponentsPageSectionIndexRoute: typeof PlaygroundComponentsPageSectionIndexRoute
   PlaygroundComponentsPillarCardIndexRoute: typeof PlaygroundComponentsPillarCardIndexRoute
   PlaygroundComponentsSeniorInfoIndexRoute: typeof PlaygroundComponentsSeniorInfoIndexRoute
@@ -276,6 +297,8 @@ const PlaygroundRouteRouteChildren: PlaygroundRouteRouteChildren = {
   PlaygroundComponentsFooterIndexRoute: PlaygroundComponentsFooterIndexRoute,
   PlaygroundComponentsInternshipPartIndexRoute:
     PlaygroundComponentsInternshipPartIndexRoute,
+  PlaygroundComponentsJobsCarouselItemSkillSetIndexRoute:
+    PlaygroundComponentsJobsCarouselItemSkillSetIndexRoute,
   PlaygroundComponentsPageSectionIndexRoute:
     PlaygroundComponentsPageSectionIndexRoute,
   PlaygroundComponentsPillarCardIndexRoute:
