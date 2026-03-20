@@ -14,6 +14,13 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as PlaygroundTypographyIndexRouteImport } from './routes/playground/typography/index'
 import { Route as PlaygroundColorIndexRouteImport } from './routes/playground/color/index'
 import { Route as PlaygroundComponentsSeniorInfoIndexRouteImport } from './routes/playground/components/SeniorInfo/index'
+import { Route as PlaygroundComponentsPillarCardIndexRouteImport } from './routes/playground/components/PillarCard/index'
+import { Route as PlaygroundComponentsPageSectionIndexRouteImport } from './routes/playground/components/PageSection/index'
+import { Route as PlaygroundComponentsJobsCarouselItemSkillSetIndexRouteImport } from './routes/playground/components/JobsCarouselItemSkillSet/index'
+import { Route as PlaygroundComponentsInternshipPartIndexRouteImport } from './routes/playground/components/InternshipPart/index'
+import { Route as PlaygroundComponentsFooterIndexRouteImport } from './routes/playground/components/Footer/index'
+import { Route as PlaygroundComponentsCultureCardIndexRouteImport } from './routes/playground/components/CultureCard/index'
+import { Route as PlaygroundComponentsAwardInfoIndexRouteImport } from './routes/playground/components/AwardInfo/index'
 
 const PlaygroundRouteRoute = PlaygroundRouteRouteImport.update({
   id: '/playground',
@@ -42,12 +49,61 @@ const PlaygroundComponentsSeniorInfoIndexRoute =
     path: '/components/SeniorInfo/',
     getParentRoute: () => PlaygroundRouteRoute,
   } as any)
+const PlaygroundComponentsPillarCardIndexRoute =
+  PlaygroundComponentsPillarCardIndexRouteImport.update({
+    id: '/components/PillarCard/',
+    path: '/components/PillarCard/',
+    getParentRoute: () => PlaygroundRouteRoute,
+  } as any)
+const PlaygroundComponentsPageSectionIndexRoute =
+  PlaygroundComponentsPageSectionIndexRouteImport.update({
+    id: '/components/PageSection/',
+    path: '/components/PageSection/',
+    getParentRoute: () => PlaygroundRouteRoute,
+  } as any)
+const PlaygroundComponentsJobsCarouselItemSkillSetIndexRoute =
+  PlaygroundComponentsJobsCarouselItemSkillSetIndexRouteImport.update({
+    id: '/components/JobsCarouselItemSkillSet/',
+    path: '/components/JobsCarouselItemSkillSet/',
+    getParentRoute: () => PlaygroundRouteRoute,
+  } as any)
+const PlaygroundComponentsInternshipPartIndexRoute =
+  PlaygroundComponentsInternshipPartIndexRouteImport.update({
+    id: '/components/InternshipPart/',
+    path: '/components/InternshipPart/',
+    getParentRoute: () => PlaygroundRouteRoute,
+  } as any)
+const PlaygroundComponentsFooterIndexRoute =
+  PlaygroundComponentsFooterIndexRouteImport.update({
+    id: '/components/Footer/',
+    path: '/components/Footer/',
+    getParentRoute: () => PlaygroundRouteRoute,
+  } as any)
+const PlaygroundComponentsCultureCardIndexRoute =
+  PlaygroundComponentsCultureCardIndexRouteImport.update({
+    id: '/components/CultureCard/',
+    path: '/components/CultureCard/',
+    getParentRoute: () => PlaygroundRouteRoute,
+  } as any)
+const PlaygroundComponentsAwardInfoIndexRoute =
+  PlaygroundComponentsAwardInfoIndexRouteImport.update({
+    id: '/components/AwardInfo/',
+    path: '/components/AwardInfo/',
+    getParentRoute: () => PlaygroundRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/playground': typeof PlaygroundRouteRouteWithChildren
   '/playground/color/': typeof PlaygroundColorIndexRoute
   '/playground/typography/': typeof PlaygroundTypographyIndexRoute
+  '/playground/components/AwardInfo/': typeof PlaygroundComponentsAwardInfoIndexRoute
+  '/playground/components/CultureCard/': typeof PlaygroundComponentsCultureCardIndexRoute
+  '/playground/components/Footer/': typeof PlaygroundComponentsFooterIndexRoute
+  '/playground/components/InternshipPart/': typeof PlaygroundComponentsInternshipPartIndexRoute
+  '/playground/components/JobsCarouselItemSkillSet/': typeof PlaygroundComponentsJobsCarouselItemSkillSetIndexRoute
+  '/playground/components/PageSection/': typeof PlaygroundComponentsPageSectionIndexRoute
+  '/playground/components/PillarCard/': typeof PlaygroundComponentsPillarCardIndexRoute
   '/playground/components/SeniorInfo/': typeof PlaygroundComponentsSeniorInfoIndexRoute
 }
 export interface FileRoutesByTo {
@@ -55,6 +111,13 @@ export interface FileRoutesByTo {
   '/playground': typeof PlaygroundRouteRouteWithChildren
   '/playground/color': typeof PlaygroundColorIndexRoute
   '/playground/typography': typeof PlaygroundTypographyIndexRoute
+  '/playground/components/AwardInfo': typeof PlaygroundComponentsAwardInfoIndexRoute
+  '/playground/components/CultureCard': typeof PlaygroundComponentsCultureCardIndexRoute
+  '/playground/components/Footer': typeof PlaygroundComponentsFooterIndexRoute
+  '/playground/components/InternshipPart': typeof PlaygroundComponentsInternshipPartIndexRoute
+  '/playground/components/JobsCarouselItemSkillSet': typeof PlaygroundComponentsJobsCarouselItemSkillSetIndexRoute
+  '/playground/components/PageSection': typeof PlaygroundComponentsPageSectionIndexRoute
+  '/playground/components/PillarCard': typeof PlaygroundComponentsPillarCardIndexRoute
   '/playground/components/SeniorInfo': typeof PlaygroundComponentsSeniorInfoIndexRoute
 }
 export interface FileRoutesById {
@@ -63,6 +126,13 @@ export interface FileRoutesById {
   '/playground': typeof PlaygroundRouteRouteWithChildren
   '/playground/color/': typeof PlaygroundColorIndexRoute
   '/playground/typography/': typeof PlaygroundTypographyIndexRoute
+  '/playground/components/AwardInfo/': typeof PlaygroundComponentsAwardInfoIndexRoute
+  '/playground/components/CultureCard/': typeof PlaygroundComponentsCultureCardIndexRoute
+  '/playground/components/Footer/': typeof PlaygroundComponentsFooterIndexRoute
+  '/playground/components/InternshipPart/': typeof PlaygroundComponentsInternshipPartIndexRoute
+  '/playground/components/JobsCarouselItemSkillSet/': typeof PlaygroundComponentsJobsCarouselItemSkillSetIndexRoute
+  '/playground/components/PageSection/': typeof PlaygroundComponentsPageSectionIndexRoute
+  '/playground/components/PillarCard/': typeof PlaygroundComponentsPillarCardIndexRoute
   '/playground/components/SeniorInfo/': typeof PlaygroundComponentsSeniorInfoIndexRoute
 }
 export interface FileRouteTypes {
@@ -72,6 +142,13 @@ export interface FileRouteTypes {
     | '/playground'
     | '/playground/color/'
     | '/playground/typography/'
+    | '/playground/components/AwardInfo/'
+    | '/playground/components/CultureCard/'
+    | '/playground/components/Footer/'
+    | '/playground/components/InternshipPart/'
+    | '/playground/components/JobsCarouselItemSkillSet/'
+    | '/playground/components/PageSection/'
+    | '/playground/components/PillarCard/'
     | '/playground/components/SeniorInfo/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -79,6 +156,13 @@ export interface FileRouteTypes {
     | '/playground'
     | '/playground/color'
     | '/playground/typography'
+    | '/playground/components/AwardInfo'
+    | '/playground/components/CultureCard'
+    | '/playground/components/Footer'
+    | '/playground/components/InternshipPart'
+    | '/playground/components/JobsCarouselItemSkillSet'
+    | '/playground/components/PageSection'
+    | '/playground/components/PillarCard'
     | '/playground/components/SeniorInfo'
   id:
     | '__root__'
@@ -86,6 +170,13 @@ export interface FileRouteTypes {
     | '/playground'
     | '/playground/color/'
     | '/playground/typography/'
+    | '/playground/components/AwardInfo/'
+    | '/playground/components/CultureCard/'
+    | '/playground/components/Footer/'
+    | '/playground/components/InternshipPart/'
+    | '/playground/components/JobsCarouselItemSkillSet/'
+    | '/playground/components/PageSection/'
+    | '/playground/components/PillarCard/'
     | '/playground/components/SeniorInfo/'
   fileRoutesById: FileRoutesById
 }
@@ -131,18 +222,87 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlaygroundComponentsSeniorInfoIndexRouteImport
       parentRoute: typeof PlaygroundRouteRoute
     }
+    '/playground/components/PillarCard/': {
+      id: '/playground/components/PillarCard/'
+      path: '/components/PillarCard'
+      fullPath: '/playground/components/PillarCard/'
+      preLoaderRoute: typeof PlaygroundComponentsPillarCardIndexRouteImport
+      parentRoute: typeof PlaygroundRouteRoute
+    }
+    '/playground/components/PageSection/': {
+      id: '/playground/components/PageSection/'
+      path: '/components/PageSection'
+      fullPath: '/playground/components/PageSection/'
+      preLoaderRoute: typeof PlaygroundComponentsPageSectionIndexRouteImport
+      parentRoute: typeof PlaygroundRouteRoute
+    }
+    '/playground/components/JobsCarouselItemSkillSet/': {
+      id: '/playground/components/JobsCarouselItemSkillSet/'
+      path: '/components/JobsCarouselItemSkillSet'
+      fullPath: '/playground/components/JobsCarouselItemSkillSet/'
+      preLoaderRoute: typeof PlaygroundComponentsJobsCarouselItemSkillSetIndexRouteImport
+      parentRoute: typeof PlaygroundRouteRoute
+    }
+    '/playground/components/InternshipPart/': {
+      id: '/playground/components/InternshipPart/'
+      path: '/components/InternshipPart'
+      fullPath: '/playground/components/InternshipPart/'
+      preLoaderRoute: typeof PlaygroundComponentsInternshipPartIndexRouteImport
+      parentRoute: typeof PlaygroundRouteRoute
+    }
+    '/playground/components/Footer/': {
+      id: '/playground/components/Footer/'
+      path: '/components/Footer'
+      fullPath: '/playground/components/Footer/'
+      preLoaderRoute: typeof PlaygroundComponentsFooterIndexRouteImport
+      parentRoute: typeof PlaygroundRouteRoute
+    }
+    '/playground/components/CultureCard/': {
+      id: '/playground/components/CultureCard/'
+      path: '/components/CultureCard'
+      fullPath: '/playground/components/CultureCard/'
+      preLoaderRoute: typeof PlaygroundComponentsCultureCardIndexRouteImport
+      parentRoute: typeof PlaygroundRouteRoute
+    }
+    '/playground/components/AwardInfo/': {
+      id: '/playground/components/AwardInfo/'
+      path: '/components/AwardInfo'
+      fullPath: '/playground/components/AwardInfo/'
+      preLoaderRoute: typeof PlaygroundComponentsAwardInfoIndexRouteImport
+      parentRoute: typeof PlaygroundRouteRoute
+    }
   }
 }
 
 interface PlaygroundRouteRouteChildren {
   PlaygroundColorIndexRoute: typeof PlaygroundColorIndexRoute
   PlaygroundTypographyIndexRoute: typeof PlaygroundTypographyIndexRoute
+  PlaygroundComponentsAwardInfoIndexRoute: typeof PlaygroundComponentsAwardInfoIndexRoute
+  PlaygroundComponentsCultureCardIndexRoute: typeof PlaygroundComponentsCultureCardIndexRoute
+  PlaygroundComponentsFooterIndexRoute: typeof PlaygroundComponentsFooterIndexRoute
+  PlaygroundComponentsInternshipPartIndexRoute: typeof PlaygroundComponentsInternshipPartIndexRoute
+  PlaygroundComponentsJobsCarouselItemSkillSetIndexRoute: typeof PlaygroundComponentsJobsCarouselItemSkillSetIndexRoute
+  PlaygroundComponentsPageSectionIndexRoute: typeof PlaygroundComponentsPageSectionIndexRoute
+  PlaygroundComponentsPillarCardIndexRoute: typeof PlaygroundComponentsPillarCardIndexRoute
   PlaygroundComponentsSeniorInfoIndexRoute: typeof PlaygroundComponentsSeniorInfoIndexRoute
 }
 
 const PlaygroundRouteRouteChildren: PlaygroundRouteRouteChildren = {
   PlaygroundColorIndexRoute: PlaygroundColorIndexRoute,
   PlaygroundTypographyIndexRoute: PlaygroundTypographyIndexRoute,
+  PlaygroundComponentsAwardInfoIndexRoute:
+    PlaygroundComponentsAwardInfoIndexRoute,
+  PlaygroundComponentsCultureCardIndexRoute:
+    PlaygroundComponentsCultureCardIndexRoute,
+  PlaygroundComponentsFooterIndexRoute: PlaygroundComponentsFooterIndexRoute,
+  PlaygroundComponentsInternshipPartIndexRoute:
+    PlaygroundComponentsInternshipPartIndexRoute,
+  PlaygroundComponentsJobsCarouselItemSkillSetIndexRoute:
+    PlaygroundComponentsJobsCarouselItemSkillSetIndexRoute,
+  PlaygroundComponentsPageSectionIndexRoute:
+    PlaygroundComponentsPageSectionIndexRoute,
+  PlaygroundComponentsPillarCardIndexRoute:
+    PlaygroundComponentsPillarCardIndexRoute,
   PlaygroundComponentsSeniorInfoIndexRoute:
     PlaygroundComponentsSeniorInfoIndexRoute,
 }

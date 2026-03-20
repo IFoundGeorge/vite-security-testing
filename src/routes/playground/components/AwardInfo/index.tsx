@@ -1,19 +1,23 @@
-import AwardInfo from "@/src/components/AwardInfo/AwardInfo";
-import VercelImage from "@/public/vercel.svg";
-import NextImage from "@/public/next.svg";
+import AwardInfo from "@src/components/AwardInfo/AwardInfo";
+import AllaImage from "@src/assets/images/alla.jpg";
+import { createFileRoute } from "@tanstack/react-router";
+
+export const Route = createFileRoute('/playground/components/AwardInfo/')({
+  component: AwardInfoPlayground,
+});
 
 export default function AwardInfoPlayground() {
   return (
     <div className="flex w-full flex-col gap-4">
       <AwardInfo
-        image={VercelImage}
+        image={AllaImage}
         direction="right"
         name="Rex Award"
         description=" To foster a culture of recognition and high performance through structured monthly and annual awards. The REX Program acknowledges individuals and leaders who consistently demonstrate excellence, innovation, and dedication across core performance areas."
       />
 
       <AwardInfo
-        image={NextImage}
+        image={AllaImage}
         direction="left"
         name="Agila Award"
         description="Agila Award (Quality Excellence Award) recognizes and celebrates teams that consistently excel in delivering quality work. It celebrates their achievements and contributions, motivating them to continue striving for excellence and serving as a positive example for others within the organization."
