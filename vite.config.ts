@@ -5,29 +5,50 @@ import { tanstackRouter } from '@tanstack/router-plugin/vite'
 import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-const securityHeaders = {
-  'Content-Security-Policy': "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https:; connect-src 'self' http://localhost:3001; frame-ancestors 'none';",
-  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+const baseHeaders = {
   'X-Frame-Options': 'DENY',
   'X-Content-Type-Options': 'nosniff',
   'Referrer-Policy': 'no-referrer',
-  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()'
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
 }
 
-const config = defineConfig({
-  plugins: [
-    devtools(),
-    tsconfigPaths({ projects: ['./tsconfig.json'] }),
-    tailwindcss(),
-    tanstackRouter({ target: 'react', autoCodeSplitting: true }),
-    viteReact(),
-  ],
-  server: {
-    headers: securityHeaders,
-  },
-  preview: {
-    headers: securityHeaders,
+export default defineConfig(({ command }) => {
+  const isDev = command === 'serve'
+
+  const csp = [
+    "default-src 'self'",
+    `script-src 'self' ${isDev ? "'unsafe-eval' 'unsafe-inline'" : ""}`,
+    "style-src 'self' 'unsafe-inline'", 
+    "img-src 'self' data: https:",
+    "font-src 'self' data:",
+    `connect-src 'self' ${isDev ? "ws://localhost:* http://localhost:*" : ""}`,
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "frame-ancestors 'none'",
+    "upgrade-insecure-requests",
+  ].filter(Boolean).join('; ')
+
+  return {
+    plugins: [
+      devtools(),
+      tsconfigPaths({ projects: ['./tsconfig.json'] }),
+      tailwindcss(),
+      tanstackRouter({ target: 'react', autoCodeSplitting: true }),
+      viteReact(),
+    ],
+    server: {
+      headers: {
+        ...baseHeaders,
+        'Content-Security-Policy': csp,
+      },
+    },
+    preview: {
+      headers: {
+        ...baseHeaders,
+        'Content-Security-Policy': csp,
+      },
+    },
   }
 })
-
-export default config
