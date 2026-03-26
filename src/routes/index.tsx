@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState } from 'react'
+import DOMPurify from 'dompurify'
 
 export const Route = createFileRoute('/')({ component: App })
 
@@ -9,6 +10,9 @@ function App() {
 
   const [xssInput, setXssInput] = useState('')
   const [renderedXss, setRenderedXss] = useState('')
+
+  const [safeInput, setSafeInput] = useState('')
+  const [strictInput, setStrictInput] = useState('')
 
   // ================= SEARCH =================
   const handleSearch = async () => {
@@ -30,9 +34,7 @@ function App() {
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      handleSearch()
-    }
+    if (e.key === 'Enter') handleSearch()
   }
 
   // ================= XSS TEST =================
@@ -40,6 +42,16 @@ function App() {
     if (e.key === 'Enter') {
       setRenderedXss(xssInput)
     }
+  }
+
+  // ================= STRICT ESCAPE =================
+  const escapeHTML = (str: string) => {
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;')
   }
 
   return (
@@ -56,13 +68,6 @@ function App() {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          style={{
-            padding: '8px',
-            border: '1px solid #ccc',
-            borderRadius: '4px',
-            width: '250px',
-            marginRight: '10px',
-          }}
         />
 
         <button onClick={handleSearch}>Search</button>
@@ -74,57 +79,117 @@ function App() {
         </div>
       </div>
 
-      {/* ================= XSS TEST ================= */}
+      {/* ================= XSS TEST (UNSAFE) ================= */}
       <div style={{ marginTop: '40px' }}>
-        <h3>XSS Test (Press Enter to execute):</h3>
+        <h3>XSS Test (Unsafe):</h3>
 
         <input
           type="text"
-          placeholder="Try: <b>Hello</b> or <script>alert(1)</script>"
+          placeholder="<script>alert(1)</script>"
           value={xssInput}
           onChange={(e) => setXssInput(e.target.value)}
           onKeyDown={handleXssKeyDown}
-          style={{
-            padding: '8px',
-            border: '1px solid #ccc',
-            borderRadius: '4px',
-            width: '350px',
-          }}
         />
 
-        <div style={{ marginTop: '10px' }}>
-          <strong>Rendered Output:</strong>
+        <div
+          style={{
+            border: '1px solid red',
+            padding: '10px',
+            marginTop: '10px',
+          }}
+          dangerouslySetInnerHTML={{ __html: renderedXss }}
+        />
 
-          <div
-            style={{
-              border: '1px solid red',
-              padding: '10px',
-              marginTop: '5px',
-            }}
-            dangerouslySetInnerHTML={{ __html: renderedXss }}
-          />
+        <p style={{ color: 'gray' }}>
+          Vulnerable: renders raw HTML
+        </p>
+      </div>
+
+      {/* ================= SAFE INPUT ================= */}
+      <div style={{ marginTop: '40px' }}>
+        <h3>Safe Input (React Escaped):</h3>
+
+        <input
+          type="text"
+          placeholder="<b>Hello</b>"
+          value={safeInput}
+          onChange={(e) => setSafeInput(e.target.value)}
+        />
+
+        <div
+          style={{
+            border: '1px solid green',
+            padding: '10px',
+            marginTop: '10px',
+          }}
+        >
+          {safeInput}
         </div>
 
         <p style={{ color: 'gray' }}>
-          ⚠️ This demonstrates XSS rendering (unsafe on purpose)
+          Safe: React escapes HTML automatically
+        </p>
+      </div>
+
+      {/* ================= SANITIZED INPUT ================= */}
+      <div style={{ marginTop: '40px' }}>
+        <h3>Sanitized Input (Filtered HTML):</h3>
+
+        <div
+          style={{
+            border: '1px solid orange',
+            padding: '10px',
+            marginTop: '10px',
+          }}
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(safeInput),
+          }}
+        />
+
+        <p style={{ color: 'gray' }}>
+          Allows safe HTML, removes scripts
+        </p>
+      </div>
+
+      {/* ================= STRICT INPUT ================= */}
+      <div style={{ marginTop: '40px' }}>
+        <h3>Strict Input (No HTML Allowed):</h3>
+
+        <input
+          type="text"
+          placeholder="<script>alert(1)</script>"
+          value={strictInput}
+          onChange={(e) => setStrictInput(e.target.value)}
+        />
+
+        <div
+          style={{
+            border: '1px solid blue',
+            padding: '10px',
+            marginTop: '10px',
+          }}
+        >
+          {escapeHTML(strictInput)}
+        </div>
+
+        <p style={{ color: 'gray' }}>
+          Strict: everything is escaped, zero HTML rendering
         </p>
       </div>
 
       {/* ================= IFRAME TEST ================= */}
       <div style={{ marginTop: '40px' }}>
-        <h3>Iframe Test (Clickjacking test):</h3>
+        <h3>Iframe Test (Clickjacking):</h3>
 
         <iframe
           src="/"
           width="400"
           height="200"
-          style={{
-            border: '2px solid red',
-          }}
+          style={{ border: '2px solid red' }}
         />
 
         <p style={{ color: 'gray' }}>
-          ⚠️ If this is blocked, your security headers are working
+          Should be blocked if X-Frame-Options works
         </p>
       </div>
 
@@ -132,16 +197,12 @@ function App() {
       <div style={{ marginTop: '40px' }}>
         <h3>CSP Test:</h3>
 
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
         <img
           src="https://via.placeholder.com/150"
-          alt="Test Image"
+          alt="Test"
         />
 
-        <p>
-          Check console for CSP errors (F12)
-        </p>
+        <p>Check console (F12) for CSP violations</p>
       </div>
     </div>
   )

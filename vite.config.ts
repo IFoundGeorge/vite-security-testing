@@ -6,29 +6,40 @@ import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 const baseHeaders = {
-  'X-Frame-Options': 'DENY',
   'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
   'Referrer-Policy': 'no-referrer',
   'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
-  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
+  'Cross-Origin-Opener-Policy': 'same-origin',
+  'Cross-Origin-Resource-Policy': 'same-origin',
+  'X-DNS-Prefetch-Control': 'off',
 }
 
 export default defineConfig(({ command }) => {
   const isDev = command === 'serve'
 
   const csp = [
-    "default-src 'self'",
-    `script-src 'self' ${isDev ? "'unsafe-eval' 'unsafe-inline'" : ""}`,
+    "default-src 'none'",
+    "script-src 'self'",
     "style-src 'self' 'unsafe-inline'", 
     "img-src 'self' data: https:",
     "font-src 'self' data:",
-    `connect-src 'self' ${isDev ? "ws://localhost:* http://localhost:*" : ""}`,
+
+    isDev 
+      ? "connect-src 'self' ws://localhost:* http://localhost:*" 
+      : "connect-src 'self' https://your-api-domain.com", 
+    
     "object-src 'none'",
     "base-uri 'self'",
-    "form-action 'self'",
-    "frame-ancestors 'none'",
-    "upgrade-insecure-requests",
-  ].filter(Boolean).join('; ')
+    "manifest-src 'self'",
+    "frame-src 'self'",
+    "form-action 'self'", 
+    "frame-ancestors 'none'", 
+    !isDev && "upgrade-insecure-requests",
+  ]
+    .filter(Boolean)
+    .join('; ')
 
   return {
     plugins: [
@@ -39,12 +50,14 @@ export default defineConfig(({ command }) => {
       viteReact(),
     ],
     server: {
+      port: 5173, 
       headers: {
         ...baseHeaders,
         'Content-Security-Policy': csp,
       },
     },
     preview: {
+      port: 4173, 
       headers: {
         ...baseHeaders,
         'Content-Security-Policy': csp,
